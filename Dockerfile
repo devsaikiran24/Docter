@@ -1,5 +1,5 @@
 # Use Maven with OpenJDK 17 to build the application (build stage)
-FROM maven:3.8.6-openjdk-17-slim AS builder
+FROM maven:3.8.6-jdk-17 AS builder
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -22,4 +22,3 @@ COPY --from=builder /app/target/*.war /usr/local/tomcat/webapps/
 
 # Expose port 8080 to allow access to the application
 EXPOSE 8080
-
