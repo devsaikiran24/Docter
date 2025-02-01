@@ -4,7 +4,7 @@ FROM tomcat:8.0.53-jre8
 # Set the GitHub URL for your raw index.html file
 ARG GITHUB_RAW_URL=https://raw.githubusercontent.com/devsaikiran24/Docter/master/index.html
 
-# Update package lists and install curl
+# Update package lists and install curl using a newer Debian base image
 RUN apt-get update && apt-get install -y curl
 
 # Debugging step to print curl version
