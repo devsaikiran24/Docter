@@ -7,6 +7,9 @@ ARG GITHUB_RAW_URL=https://raw.githubusercontent.com/devsaikiran24/Docter/master
 # Update package lists and install curl
 RUN apt-get update && apt-get install -y curl
 
+# Debugging step to print curl version
+RUN curl --version
+
 # Download the index.html file from the GitHub repository and place it in the Tomcat webapps/ROOT folder
 RUN curl -L $GITHUB_RAW_URL -o /usr/local/tomcat/webapps/ROOT/index.html || { echo 'Download failed'; exit 1; }
 
