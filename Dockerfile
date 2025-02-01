@@ -1,20 +1,17 @@
-# Use a specific version of Tomcat to ensure consistency
-FROM tomcat:8.0.53-jre8
+# Use a more recent Tomcat version based on a supported Debian release
+FROM tomcat:9.0-jre8
 
-# Set the GitHub URL for your raw index.html file
-ARG GITHUB_RAW_URL=https://raw.githubusercontent.com/devsaikiran24/Docter/master/index.html
+# Set the working directory
+WORKDIR /usr/local/tomcat
 
-# Update package lists and install curl using a newer Debian base image
-RUN apt-get update && apt-get install -y curl
+# Optional: Copy your WAR file to the Tomcat webapps directory
+# COPY path_to_your_war_file.war /usr/local/tomcat/webapps/
 
-# Debugging step to print curl version
-RUN curl --version
+# Install curl (since the default image might not have it)
+RUN apt-get update && apt-get install -y curl && apt-get clean
 
-# Download the index.html file from the GitHub repository and place it in the Tomcat webapps/ROOT folder
-RUN curl -L $GITHUB_RAW_URL -o /usr/local/tomcat/webapps/ROOT/index.html || { echo 'Download failed'; exit 1; }
-
-# Clean up APT when done.
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-# Expose port 8080
+# Expose the default Tomcat port
 EXPOSE 8080
+
+# Optional: Run a custom command or your app (if necessary)
+# CMD ["catalina.sh", "run"]
