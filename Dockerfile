@@ -1,3 +1,3 @@
 FROM tomcat:8.0
-COPY ./target/*.war /usr/local/tomcat/webapps/index.html
-EXPOSE 8080	
+COPY ./target/*.war /usr/local/tomcat/webapps/index.war
+EXPOSE 8080
