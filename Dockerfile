@@ -7,11 +7,11 @@ WORKDIR /app
 # Copy the WAR file from the target directory into the container
 COPY target/demo-Doctor-0.0.1-SNAPSHOT.jar app.jar
 
-# If your static files are in a 'static' directory, copy them into the correct directory for the web server (e.g., Nginx or Tomcat)
-COPY static /usr/share/nginx/html/
+# Copy the static files into the container (adjusted for the correct location)
+COPY src/main/resources/static /usr/share/nginx/html/
 
 # Expose the port the app runs on (adjust if necessary)
 EXPOSE 8080
 
-# Run the WAR file (if it's a Spring Boot app, for example)
+# Run the WAR file (if it's a Spring Boot app)
 ENTRYPOINT ["java", "-jar", "app.jar"]
