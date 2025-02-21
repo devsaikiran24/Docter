@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: devsaikiran24-container
-        image: devsaikiran24/Docter:latest
+        image: devsaikiran24/docter:latest
         ports:
         - containerPort: 8080
 ---
