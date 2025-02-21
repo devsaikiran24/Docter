@@ -23,13 +23,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name:devsaikiran24-np-service
+  name: devsaikiran24-np-service  # Corrected space after colon
   labels:
     app: devsaikiran24-np-app
 spec:
   selector:
     app: devsaikiran24-deploy-lbl
-
   type: NodePort
   ports:
   - nodePort: 31028
