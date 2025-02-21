@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devsaikiran24-deploy
+  labels:
+    app: devsaikiran24-deploy-lbl
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: devsaikiran24-app
+  template:
+    metadata:
+      labels:
+        app: devsaikiran24-app
+    spec:
+      containers:
+      - name: devsaikiran24-container
+        image: devsaikiran24/Docter:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name:devsaikiran24-np-service
+  labels:
+    app: devsaikiran24-np-app
+spec:
+  selector:
+    app: devsaikiran24-deploy-lbl
+
+  type: NodePort
+  ports:
+  - nodePort: 31028
+    port: 8080
+    targetPort: 8080
